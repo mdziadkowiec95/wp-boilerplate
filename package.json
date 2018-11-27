@@ -18,5 +18,19 @@
   "bugs": {
     "url": "https://github.com/mdziadkowiec95/wp-boilerplate/issues"
   },
-  "homepage": "https://github.com/mdziadkowiec95/wp-boilerplate#readme"
+  "homepage": "https://github.com/mdziadkowiec95/wp-boilerplate#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-latest": "^6.24.1",
+    "browser-sync": "^2.26.3",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-combine-mq": "^0.4.0",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-sass": "^4.0.2",
+    "webpack": "^4.26.1",
+    "webpack-stream": "^5.1.1"
+  }
 }

@@ -1,0 +1,11 @@
+.test {
+  display: grid;
+  grid-template-columns: 2fr 2;
+  display: flex;
+  flex-direction: row;
+  align-items: space-between;
+}
+
+
+@import 'base/base';
+@import 'components/nav';
