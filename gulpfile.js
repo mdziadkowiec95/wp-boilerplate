@@ -26,7 +26,8 @@ gulp.task('css', function () {
 gulp.task('js', () => {
   gulp.src('src/assets/js/main.js')
     .pipe(webpackStream(webpackConfig), webpack)
-    .pipe(gulp.dest('js'));
+    .pipe(gulp.dest('js'))
+    .pipe(browserSync.stream());
 });
 
 gulp.task("server", function () {
@@ -40,8 +41,9 @@ gulp.task("server", function () {
 gulp.task("watch", function () {
 
   gulp.watch('src/sass/**/*.scss', ["css"]);
-  gulp.watch(["*.php", "src/assets/js/*.js"], browserSync.reload);
+  gulp.watch('src/assets/js/**/*.js', ['js']);
+  gulp.watch("*.php", browserSync.reload);
 
 });
 
-gulp.task("default", ["css", "server", "watch"]);
+gulp.task("default", ["watch", "css", "js", "server"]);

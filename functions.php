@@ -119,6 +119,17 @@ add_action( 'widgets_init', 'wp_boilerplate_widgets_init' );
 /**
  * Enqueue scripts and styles.
  */
+
+function modify_jquery_version() {
+	if (!is_admin()) {
+			wp_deregister_script('jquery');
+			wp_register_script('jquery',
+'https://code.jquery.com/jquery-3.2.1.slim.min.js', false, '2.0.s');
+			wp_enqueue_script('jquery');
+	}
+}
+add_action('init', 'modify_jquery_version');
+
 function wp_boilerplate_scripts() {
 	wp_enqueue_style( 'wp-boilerplate-style', get_stylesheet_uri());
 	wp_enqueue_style( 'wp-main-css', get_stylesheet_directory_uri() . '/src/assets/css/main.css');
@@ -161,4 +172,9 @@ require get_template_directory() . '/inc/customizer.php';
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
+
+// My custom php 
+
+require get_template_directory() . '/bootstrap-navwalker.php';
+
 

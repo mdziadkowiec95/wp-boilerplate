@@ -1,6 +1,8 @@
 
 // import '../../../js/customizer';
 import '../../../js/skip-link-focus-fix';
-import '../../../js/navigation';
+import '../../../node_modules/bootstrap/js/src/dropdown';
+import '../../../node_modules/bootstrap/js/src/collapse';
 
-const x = document.querySelectorAll('.test');
+// import '../../../js/navigation';
+

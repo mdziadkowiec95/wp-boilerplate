@@ -13,8 +13,8 @@
  */
 
 get_header();
-?>
-
+?><body></body>
+	<img src="<?= get_stylesheet_directory_uri(); ?>/src/assets/img/logo-blag.png" alt="">
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main">
 
@@ -55,5 +55,5 @@ get_header();
 	</div><!-- #primary -->
 
 <?php
-get_sidebar();
+// get_sidebar();
 get_footer();
