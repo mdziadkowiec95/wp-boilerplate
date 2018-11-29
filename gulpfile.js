@@ -2,6 +2,7 @@ const gulp = require('gulp'),
   plugins = require('gulp-load-plugins')({
     lazy: true,
   }),
+  sourcemaps = require('gulp-sourcemaps'),
   browserSync = require('browser-sync'),
   webpack = require('webpack'),
   webpackStream = require('webpack-stream'),
@@ -10,6 +11,7 @@ const gulp = require('gulp'),
 
 gulp.task('css', function () {
   return gulp.src('src/sass/main.scss')
+    .pipe(sourcemaps.init())
     .pipe(plugins.plumber())
     .pipe(plugins.sass({
       includePaths: ['./node_modules'],
@@ -19,6 +21,7 @@ gulp.task('css', function () {
     .pipe(plugins.combineMq({
       beautify: false
     }))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest('src/assets/css'))
     .pipe(browserSync.stream());
 });
@@ -27,7 +30,6 @@ gulp.task('js', () => {
   gulp.src('src/assets/js/main.js')
     .pipe(webpackStream(webpackConfig), webpack)
     .pipe(gulp.dest('js'))
-    .pipe(browserSync.stream());
 });
 
 gulp.task("server", function () {
@@ -41,9 +43,10 @@ gulp.task("server", function () {
 gulp.task("watch", function () {
 
   gulp.watch('src/sass/**/*.scss', ["css"]);
-  gulp.watch('src/assets/js/**/*.js', ['js']);
   gulp.watch("*.php", browserSync.reload);
-
+  gulp.watch('src/assets/js/**/*.js', ['js', () => {
+    browserSync.reload();
+  }]);
 });
 
-gulp.task("default", ["watch", "css", "js", "server"]);
+gulp.task("default", ["server", "watch"]);
